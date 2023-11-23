@@ -13,19 +13,13 @@ public class BlogPost {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // @Column(nullable = false)
     private String title;
 
-    // @Column(nullable = false)
     private String content;
 
-    // @Column(name = "created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date createdAt;
 
     private Date updatedAt;
-
-    // Getters and setters
-
 
 }
 

@@ -15,10 +15,8 @@ public class BlogPostService {
 
 
     public Object getAllBlogPosts() {
-        // Get all BlogPost objects from the database
-        Iterable<BlogPost> blogPosts = blogPostRepository.findAll();
         // Return the BlogPost objects
-        return blogPosts;
+        return blogPostRepository.findAll();
     }
 
     public Object createBlogPost(BlogPostDTO blogPostDTO) {
@@ -36,14 +34,14 @@ public class BlogPostService {
 
     public Object getBlogPost(Long postId) {
         // Get the BlogPost object from the database
-        BlogPost blogPost = blogPostRepository.findById(postId).orElse(null);
+        BlogPost blogPost = blogPostRepository.findById(postId).orElseThrow(() -> new RuntimeException("blog post with id " + postId + " not found"));
         // Return the BlogPost object
         return blogPost;
     }
 
     public Object updateBlogPost(Long postId, BlogPostDTO blogPostDTO) {
         // Get the BlogPost object from the database
-        BlogPost blogPost = blogPostRepository.findById(postId).orElse(null);
+        BlogPost blogPost = blogPostRepository.findById(postId).orElseThrow(() -> new RuntimeException("blog post with id " + postId + " not found"));
         // Update the BlogPost object
         blogPost.setTitle(blogPostDTO.getTitle());  
         blogPost.setContent(blogPostDTO.getContent());
@@ -56,7 +54,7 @@ public class BlogPostService {
     
     public Object deleteBlogPost(Long postId) {
         // Get the BlogPost object from the database
-        BlogPost blogPost = blogPostRepository.findById(postId).orElse(null);
+        BlogPost blogPost = blogPostRepository.findById(postId).orElseThrow(() -> new RuntimeException("blog post with id " + postId + " not found"));
         // Delete the BlogPost object from the database
         blogPostRepository.delete(blogPost);
         // Return the BlogPost object
