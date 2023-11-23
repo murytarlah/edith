@@ -1,12 +1,17 @@
 package com.septasoftware.blog.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
+@Table(name = "blog_posts")
 public class BlogPost {
 
     @Id
@@ -17,9 +22,13 @@ public class BlogPost {
 
     private String content;
 
-    private Date createdAt;
+    @CreationTimestamp
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
-    private Date updatedAt;
+    @UpdateTimestamp
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updatedAt;
 
 }
 
